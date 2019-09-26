@@ -1,5 +1,5 @@
-### Store your links to useful sites here:
+# Store your links to useful sites here:
 
-## LoRa Server
+### LoRa Server
 
 https://www.loraserver.io/overview/
