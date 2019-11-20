@@ -48,6 +48,7 @@ void checkNetwork(int networksFound) {
     //Serial.printf("%d: %s %s \n", i + 1, WiFi.SSID(i).c_str(), WiFi.SSID(i).equals(CheckSsid) ? "the one" : "not the one");
     if (WiFi.SSID(i).equals(CheckSsid)) {
       networkFound = true;
+      inBounds = true;
       break;
     }
   }
