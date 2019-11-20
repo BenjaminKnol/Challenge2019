@@ -1,12 +1,14 @@
 #define uS_TO_S_FACTOR 1000000  //Conversion factor for micro seconds to seconds
-#define TIME_TO_SLEEP 5 // in seconds
+#define TIME_TO_SLEEP 600
+// in seconds, 10 min * 60 = 600
 
 char* CheckSsid = "Defqon 1 (d-word for pass)";
 
-boolean debug = true;
+boolean debug = false;
 bool inBounds = true;
 
 #include "ESP8266WiFi.h"
+
 
 void setup() {
   // put your setup code here, to run once:
@@ -16,8 +18,8 @@ void setup() {
   while (!Serial) {}
   Serial.println("startup");
 
-  WiFi.mode(WIFI_STA);
 
+  WiFi.mode(WIFI_STA);
 
 
 }
@@ -28,12 +30,11 @@ void loop() {
   WiFi.scanNetworksAsync(checkNetwork);
   if (inBounds) {
     Serial.println("ik na naar bed");
+
     ESP.deepSleep(TIME_TO_SLEEP * uS_TO_S_FACTOR);
   } else {
-    while (true) {
-      Serial.println("De vogel is gejat");
-      delay(500);
-    }
+
+    Serial.println("De vogel is gejat");
   }
 
 
