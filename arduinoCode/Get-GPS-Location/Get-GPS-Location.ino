@@ -1,25 +1,26 @@
 // Get GPS location
 // Made by A.M. Heijboer on 19-11-2019
-// Version 0.0.6
-// Last edited on 20-11-2019
+// Version 0.0.7
+// Last edited on 21-11-2019
 
 // STILL NEEDS WORK!! TESTING!
-
 
 #include <SoftwareSerial.h>
 #include <TinyGPS.h>
 
 // set Arduino type
-String arduinoTypeString = "Mega";    // enter the Arduino that is used. Options are: Uno / Mega
+String arduinoTypeString = "Uno";    // enter the Arduino that is used. Options are: Uno / Mega
 int arduinoTypeInt = 0;               // string cannot be used, so we use a integer for the Arduino selection. This variable is filled later
 
 // create variables
-int gpsBoardTX;
-int gpsBoardRX;
+int gpsBoardTX = 4; 
+int gpsBoardRX = 5;
 int gpsBoardGround;
 int gpsBoardVCC;
+boolean setup01b = true;
 
-SoftwareSerial mySerial(gpsBoardTX, gpsBoardRX); // RX, TX
+// Onderstaande software serial wordt nu na de setup geregeld. Tijdelijk nog deze regel laten staan
+//SoftwareSerial mySerial(gpsBoardTX, gpsBoardRX); // RX, TX
 TinyGPS gps;
 
 void gpsdump(TinyGPS &gps);
@@ -56,18 +57,25 @@ void setup(){
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
-  // set the data rate for the SoftwareSerial port
-  mySerial.begin(9600);
-  delay(1000);
+
+  // Onderstaande weggehaald, kan waarschijnlijk weg blijven
+//  // set the data rate for the SoftwareSerial port
+//  mySerial.begin(9600);
+//  delay(1000);
+
   Serial.println("Haal die locatie op!!\n");
   
   //debugTestSerial("Gedeelte in setup","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
 }
 
+// Open and define Software Serial
+SoftwareSerial mySerial(gpsBoardTX, gpsBoardRX); // RX, TX
+
 // Sjabloon debug regel
 //  debugTestSerial("","");                                  // DEBUG TEST | PRINT LINE TO SERIAL
 
 void loop(){
+  if(setup01b){setup01();}               // run setup01 to open Software Serial connection
   debugTestSerial("Main Loop","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
   bool newdata = false;
   unsigned long start = millis();
@@ -182,4 +190,10 @@ void printFloat(double number, int digits){
 
 void debugTestSerial(String ou, String message){
   Serial.println("debugTestSerial: " + ou + ": " + message);
+}
+
+static void setup01(){
+  // set the data rate for the SoftwareSerial port
+  mySerial.begin(9600);
+  delay(1000);
 }
