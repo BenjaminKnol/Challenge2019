@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@homepage')->name('homepage');
+Route::resource('/birds', 'BirdController');
