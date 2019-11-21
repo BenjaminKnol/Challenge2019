@@ -60,10 +60,13 @@ void setup(){
   mySerial.begin(9600);
   delay(1000);
   Serial.println("Haal die locatie op!!\n");
-  debugTestSerial("Gedeelte in setup","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+  
+  //debugTestSerial("Gedeelte in setup","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
 }
 
+// Sjabloon debug regel
 //  debugTestSerial("","");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+
 void loop(){
   debugTestSerial("Main Loop","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
   bool newdata = false;
@@ -74,16 +77,15 @@ void loop(){
     if (mySerial.available())
     {
       char c = mySerial.read();
-      Serial.println("test");
-      debugTestSerial("Serial zou hier geprint moeten worden",String.valueOf(c));                                  // DEBUG TEST | PRINT LINE TO SERIAL
-      //Serial.print(c);  // uncomment to see raw GPS data
+      Serial.print(c);  // uncomment to see raw GPS data
       if (gps.encode(c)) 
       {
         newdata = true;
         break;  // uncomment to print new data immediately!
+        //debugTestSerial("if gps.encode(c)","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
       }
     }
-    debugTestSerial("While binnen de Main Loop","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+    //debugTestSerial("While binnen de Main Loop","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
   }
   
   if (newdata) 
@@ -179,5 +181,5 @@ void printFloat(double number, int digits){
 }
 
 void debugTestSerial(String ou, String message){
-  Serial.println("debugTestSerial " + ou + ":" + message);
+  Serial.println("debugTestSerial: " + ou + ": " + message);
 }
