@@ -60,25 +60,30 @@ void setup(){
   mySerial.begin(9600);
   delay(1000);
   Serial.println("Haal die locatie op!!\n");
+  debugTestSerial("Gedeelte in setup","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
 }
 
+//  debugTestSerial("","");                                  // DEBUG TEST | PRINT LINE TO SERIAL
 void loop(){
-  return;
+  debugTestSerial("Main Loop","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
   bool newdata = false;
   unsigned long start = millis();
-  // Every 5 seconds we print an update
+  // every 5 seconds we print an update
   while (millis() - start < 5000) 
   {
     if (mySerial.available())
     {
       char c = mySerial.read();
-      Serial.print(c);  // uncomment to see raw GPS data
+      Serial.println("test");
+      debugTestSerial("Serial zou hier geprint moeten worden",String.valueOf(c));                                  // DEBUG TEST | PRINT LINE TO SERIAL
+      //Serial.print(c);  // uncomment to see raw GPS data
       if (gps.encode(c)) 
       {
         newdata = true;
         break;  // uncomment to print new data immediately!
       }
     }
+    debugTestSerial("While binnen de Main Loop","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
   }
   
   if (newdata) 
@@ -171,4 +176,8 @@ void printFloat(double number, int digits){
     Serial.print(toPrint);
     remainder -= toPrint;
   }
+}
+
+void debugTestSerial(String ou, String message){
+  Serial.println("debugTestSerial " + ou + ":" + message);
 }
