@@ -13,8 +13,8 @@ String arduinoTypeString = "Uno";     // enter the Arduino that is used. Options
 int arduinoTypeInt = 0;               // string cannot be used, so we use a integer for the Arduino selection. This variable is filled later
 
 // create variables
-int gpsBoardTX = 4; 
-int gpsBoardRX = 5;
+int gpsBoardTX; 
+int gpsBoardRX;
 int gpsBoardGround;
 int gpsBoardVCC;
 boolean setup01b = true;
@@ -63,7 +63,7 @@ void setup(){
 }
 
 // Open and define Software Serial
-SoftwareSerial mySerial(gpsBoardTX, gpsBoardRX); // RX, TX
+SoftwareSerial gpsSerial(gpsBoardTX, gpsBoardRX); // RX, TX
 
 // Sjabloon debug regel
 //  debugTestSerial("","");                                  // DEBUG TEST | PRINT LINE TO SERIAL
@@ -76,15 +76,19 @@ void loop(){
   // every 5 seconds we print an update
   while (millis() - start < 5000) 
   {
-    if (mySerial.available())
+    if (gpsSerial.available())
     {
-      char c = mySerial.read();
+      char c = gpsSerial.read();
+      
+      //Serial.println(gps.encode(c));
+      //gps.encode(c)
+      
       //Serial.print(c);  // uncomment to see raw GPS data
-      if (gps.encode(c)) 
+      if (gps.encode(c)) // passes 1 character to gps.encode()
       {
+        debugTestSerial("if gps.encode(c)","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
         newdata = true;
         break;  // uncomment to print new data immediately!
-        debugTestSerial("if gps.encode(c)","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
       }
     }
   }
@@ -188,6 +192,7 @@ void debugTestSerial(String ou, String message){
 
 static void setup01(){
   // set the data rate for the SoftwareSerial port
-  mySerial.begin(9600);
+  gpsSerial.begin(9600);
   delay(1000);
+  setup01b = false;
 }
