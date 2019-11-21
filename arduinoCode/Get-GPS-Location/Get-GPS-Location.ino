@@ -1,7 +1,7 @@
 // Get GPS location
 // Made by A.M. Heijboer on 19-11-2019
-// Version 0.0.4
-// Last edited on 19-11-2019
+// Version 0.0.6
+// Last edited on 20-11-2019
 
 // STILL NEEDS WORK!! TESTING!
 
@@ -9,12 +9,15 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS.h>
 
-// define variables for pins
-int gpsBoardTX = 4;
-int gpsBoardRX = 5;
-int gpsBoardGround = 6;
-int gpsBoardVCC = 7;
+// set Arduino type
+String arduinoTypeString = "Mega";    // enter the Arduino that is used. Options are: Uno / Mega
+int arduinoTypeInt = 0;               // string cannot be used, so we use a integer for the Arduino selection. This variable is filled later
 
+// create variables
+int gpsBoardTX;
+int gpsBoardRX;
+int gpsBoardGround;
+int gpsBoardVCC;
 
 SoftwareSerial mySerial(gpsBoardTX, gpsBoardRX); // RX, TX
 TinyGPS gps;
@@ -23,7 +26,29 @@ void gpsdump(TinyGPS &gps);
 void printFloat(double f, int digits = 2);
 
 void setup(){
-  // provide power for GPS module
+  // check Arduino type from arduinoTypeString, cast to integer and write to arduinoTypeInt
+  if(arduinoTypeString.equals("Uno")){arduinoTypeInt = 1;};
+  if(arduinoTypeString.equals("Mega")){arduinoTypeInt = 2;};
+
+  // set variables for pins on Arduino, based on Arduino type (in integer) from arduinoTypeInt
+  switch(arduinoTypeInt){
+    case 1:
+      gpsBoardTX = 4;
+      gpsBoardRX = 5;
+      gpsBoardGround = 6;
+      gpsBoardVCC = 7;
+      break;
+    case 2:
+      gpsBoardTX = 3;
+      gpsBoardRX = 4;
+      gpsBoardGround = 5;
+      gpsBoardVCC = 6;
+      break;
+    default:
+      break;
+  }
+
+  // provide power for GPS module | set pinMode and digitalWrite for VCC en Ground pins on the Arduino, connected to the GPS module
   pinMode(gpsBoardVCC, OUTPUT);      // sets gpsBoardVCC PIN as output
   digitalWrite(gpsBoardVCC, HIGH);   // connect gpsBoardVCC to 5V
   pinMode(gpsBoardGround, OUTPUT);   // sets gpsBoardGround PIN as output
@@ -38,6 +63,7 @@ void setup(){
 }
 
 void loop(){
+  return;
   bool newdata = false;
   unsigned long start = millis();
   // Every 5 seconds we print an update
