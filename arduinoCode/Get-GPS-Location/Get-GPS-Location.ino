@@ -9,7 +9,7 @@
 #include <TinyGPS.h>
 
 // set Arduino type
-String arduinoTypeString = "Uno";    // enter the Arduino that is used. Options are: Uno / Mega
+String arduinoTypeString = "Uno";     // enter the Arduino that is used. Options are: Uno / Mega
 int arduinoTypeInt = 0;               // string cannot be used, so we use a integer for the Arduino selection. This variable is filled later
 
 // create variables
@@ -18,9 +18,8 @@ int gpsBoardRX = 5;
 int gpsBoardGround;
 int gpsBoardVCC;
 boolean setup01b = true;
+boolean debugTestSerialEnabled = true;
 
-// Onderstaande software serial wordt nu na de setup geregeld. Tijdelijk nog deze regel laten staan
-//SoftwareSerial mySerial(gpsBoardTX, gpsBoardRX); // RX, TX
 TinyGPS gps;
 
 void gpsdump(TinyGPS &gps);
@@ -58,11 +57,6 @@ void setup(){
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
 
-  // Onderstaande weggehaald, kan waarschijnlijk weg blijven
-//  // set the data rate for the SoftwareSerial port
-//  mySerial.begin(9600);
-//  delay(1000);
-
   Serial.println("Haal die locatie op!!\n");
   
   //debugTestSerial("Gedeelte in setup","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
@@ -85,19 +79,19 @@ void loop(){
     if (mySerial.available())
     {
       char c = mySerial.read();
-      Serial.print(c);  // uncomment to see raw GPS data
+      //Serial.print(c);  // uncomment to see raw GPS data
       if (gps.encode(c)) 
       {
         newdata = true;
         break;  // uncomment to print new data immediately!
-        //debugTestSerial("if gps.encode(c)","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+        debugTestSerial("if gps.encode(c)","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
       }
     }
-    //debugTestSerial("While binnen de Main Loop","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
   }
   
   if (newdata) 
   {
+    debugTestSerial("if newdata","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
     Serial.println("Acquired Data");
     Serial.println("-------------");
     gpsdump(gps);
@@ -189,7 +183,7 @@ void printFloat(double number, int digits){
 }
 
 void debugTestSerial(String ou, String message){
-  Serial.println("debugTestSerial: " + ou + ": " + message);
+  if(debugTestSerialEnabled){Serial.println("debugTestSerial: " + ou + ": " + message);}
 }
 
 static void setup01(){
