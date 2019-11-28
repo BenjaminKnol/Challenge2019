@@ -15,6 +15,7 @@ public class MQTT implements MqttCallback {
 
     private String serverUrl;
 
+
     public MQTT(boolean TLS, String protocol, String host, MqttConnectOptions MQTToptions) throws Exception {
 
         int port;
@@ -51,6 +52,8 @@ public class MQTT implements MqttCallback {
                 String string = new String(message.getPayload());
                 BirdGps birdGps = stringBirdGps(string);
                 birdGps.print();
+                PostgreSQL db = new PostgreSQL(birdGps);
+                db.connect();
             }
 
             //@Override

@@ -23,14 +23,21 @@ public class PostgreSQL {
             conn = DriverManager.getConnection(url, user, password);
             Statement state = conn.createStatement();
             ResultSet rs = state.executeQuery("SELECT id FROM locations ORDER BY id LIMIT 1");
-            long latestlocationId=-1;
+            long latestlocationId=0;
             while(rs.next()){
                 latestlocationId= rs.getLong(1);
             }
-            PreparedStatement st = conn.prepareStatement(
-                    String.format("INSERT INTO locations VALUES(%d, %d, %f %f, %z %s %s",
-                            latestlocationId, payload.getTrackerID());
-//            System.out.println("Connected to the PostgreSQL server successfully.");
+            PreparedStatement st = conn.prepareStatement("INSERT INTO locations VALUES( ?, ?, ?, ?, ?, ?, ?)");
+
+            st.setObject(1, latestlocationId);
+            st.setObject(2, payload.getTrackerID());
+            st.setObject(3, payload.getGpsLong());
+            st.setObject(4, payload.getGpsLat());
+            st.setObject(5, payload.getDate());
+            st.setObject(6, LocalDateTime.now());
+            st.setObject(7, LocalDateTime.now());
+            st.executeUpdate();
+            st.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

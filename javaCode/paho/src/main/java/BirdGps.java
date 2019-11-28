@@ -11,8 +11,8 @@ public class BirdGps {
     public BirdGps(LocalDateTime date, String trackerID, double gpsLat, double gpsLog) {
         this.date = date;
         this.trackerID = trackerID;
-        this.gpsLat = gpsLat;
         this.gpsLog = gpsLog;
+        this.gpsLat = gpsLat;
     }
 
     public void setDate(LocalDateTime date) {
