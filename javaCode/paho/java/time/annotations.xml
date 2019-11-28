@@ -1,0 +1,5 @@
+<root>
+    <item name='java.time.LocalTime'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>
