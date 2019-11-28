@@ -1,25 +1,25 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class BirdGps {
 
-    private Date date;
+    private LocalDateTime date;
     private String trackerID;
     private double gpsLat;
     private double gpsLog;
 
 
-    public BirdGps(Date date, String trackerID, double gpsLat, double gpsLog) {
+    public BirdGps(LocalDateTime date, String trackerID, double gpsLat, double gpsLog) {
         this.date = date;
         this.trackerID = trackerID;
         this.gpsLat = gpsLat;
         this.gpsLog = gpsLog;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 

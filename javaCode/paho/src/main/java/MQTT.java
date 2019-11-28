@@ -6,6 +6,7 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -132,19 +133,19 @@ public class MQTT implements MqttCallback {
 
         String pattern = "YYYY-MM-dd HH:mm:ss";
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-        Date date = null;
+        LocalDateTime date = null;
 
         double doubleLat = Double.valueOf(lat);
         double doubleLong = Double.valueOf(lon);
 
         try {
 
-            date = dateFormat.parse(time);
+            date = LocalDateTime.parse(time);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
             if (date == null) {
-                date = new Date();
+                date = LocalDateTime.now();
             }
 
             BirdGps birdGps = new BirdGps(date, id, doubleLat, doubleLong);
