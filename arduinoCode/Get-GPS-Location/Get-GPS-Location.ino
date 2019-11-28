@@ -12,13 +12,14 @@
 String arduinoTypeString = "Uno";     // enter the Arduino that is used. Options are: Uno / Mega
 int arduinoTypeInt = 0;               // string cannot be used, so we use a integer for the Arduino selection. This variable is filled later
 
-// create variables
+// create variables for board pins
 int gpsBoardTX; 
 int gpsBoardRX;
 int gpsBoardGround;
 int gpsBoardVCC;
-boolean setup01b = true;
-boolean debugTestSerialEnabled = true;
+// create booleans
+boolean setup01b = true;                // execute setup01b?
+boolean debugTestSerialEnabled = true;  // enable debug output over serial?
 
 TinyGPS gps;
 
@@ -56,21 +57,21 @@ void setup(){
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
-
+  //while(!Serial && millis() < 1000){; /* wait for serial port to connect. Needed for native USB only. Maximum waiting time is 1 second */}
   Serial.println("Haal die locatie op!!\n");
-  
-  //debugTestSerial("Gedeelte in setup","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+  debugTestSerial("SETUP","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
 }
 
 // Open and define Software Serial
 SoftwareSerial gpsSerial(gpsBoardTX, gpsBoardRX); // RX, TX
 
 // Sjabloon debug regel
-//  debugTestSerial("","");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+// debugTestSerial("","");                                  // DEBUG TEST | PRINT LINE TO SERIAL
 
 void loop(){
   if(setup01b){setup01();}               // run setup01 to open Software Serial connection
-  debugTestSerial("Main Loop","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+  debugTestSerial("MAIN","OK - Runtime Arduino in seconds: "+String(millis()/1000, DEC));                                  // DEBUG TEST | PRINT LINE TO SERIAL
+
   bool newdata = false;
   unsigned long start = millis();
   // every 5 seconds we print an update
@@ -80,10 +81,10 @@ void loop(){
     {
       char c = gpsSerial.read();
       
-      //Serial.println(gps.encode(c));
-      //gps.encode(c)
+      Serial.println(gps.encode(c));
+      gps.encode(c);
       
-      //Serial.print(c);  // uncomment to see raw GPS data
+      Serial.print(c);  // uncomment to see raw GPS data
       if (gps.encode(c)) // passes 1 character to gps.encode()
       {
         debugTestSerial("if gps.encode(c)","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
@@ -186,8 +187,8 @@ void printFloat(double number, int digits){
   }
 }
 
-void debugTestSerial(String ou, String message){
-  if(debugTestSerialEnabled){Serial.println("debugTestSerial: " + ou + ": " + message);}
+void debugTestSerial(String codePart, String message){
+  if(debugTestSerialEnabled){Serial.println("debugTestSerial: " + codePart + ": " + message);}
 }
 
 static void setup01(){
