@@ -134,8 +134,6 @@ public class MQTT implements MqttCallback {
 
     public static BirdGps toBirdGps(String id, String lat, String lon, String time) {
 
-        String pattern = "YYYY-MM-dd HH:mm:ss";
-        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
         LocalDateTime date = null;
 
         double doubleLat = Double.valueOf(lat);
