@@ -1,7 +1,7 @@
 // Get GPS location
 // Made by A.M. Heijboer on 19-11-2019
 // Version 0.0.7
-// Last edited on 21-11-2019
+// Last edited on 28-11-2019
 
 // STILL NEEDS WORK!! TESTING!
 
