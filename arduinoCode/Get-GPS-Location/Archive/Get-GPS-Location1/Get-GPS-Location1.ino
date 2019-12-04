@@ -1,7 +1,34 @@
+
+
+
+// Tijdelijk niet gebruiken!!
+
+// Graag eerst een van de test Sketches werkend krijgen, daarna hierin implementeren of de functies uit deze sketch implementeren in een nieuwe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Get GPS location
 // Made by A.M. Heijboer on 19-11-2019
-// Version 0.0.7
-// Last edited on 28-11-2019
+// Version 0.0.8
+// Last edited on 04-12-2019
 
 // STILL NEEDS WORK!! TESTING!
 
@@ -18,8 +45,8 @@ int gpsBoardRX;
 int gpsBoardGround;
 int gpsBoardVCC;
 // create booleans
-boolean setup01b = true;                // execute setup01b?
-boolean debugTestSerialEnabled = true;  // enable debug output over serial?
+boolean setup01b = true;                  // execute setup01b?
+boolean debugTestSerialEnabled = true;    // enable debug output over serial?
 
 TinyGPS gps;
 
@@ -57,21 +84,21 @@ void setup(){
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
-  //while(!Serial && millis() < 1000){; /* wait for serial port to connect. Needed for native USB only. Maximum waiting time is 1 second */}
+  while(!Serial && millis() < 1000){;} // wait for serial port to connect. Needed for native USB only. Maximum waiting time is 1 second 
   Serial.println("Haal die locatie op!!\n");
-  debugTestSerial("SETUP","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+  debugTestSerial("SETUP","OK",0);                                  // DEBUG TEST | PRINT LINE TO SERIAL  | SETUP | OK
 }
 
 // Open and define Software Serial
 SoftwareSerial gpsSerial(gpsBoardTX, gpsBoardRX); // RX, TX
 
 // Sjabloon debug regel
-// debugTestSerial("","");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+// debugTestSerial("","",0);      // DEBUG TEST | PRINT LINE TO SERIAL  | FillFUNCTION  | FillMESSAGE
 
 void loop(){
   if(setup01b){setup01();}               // run setup01 to open Software Serial connection
-  debugTestSerial("MAIN","OK - Runtime Arduino in seconds: "+String(millis()/1000, DEC));                                  // DEBUG TEST | PRINT LINE TO SERIAL
-
+  debugTestSerial("MAIN","OK",1);                                  // DEBUG TEST | PRINT LINE TO SERIAL | MAIN  | OK // parameter 1 to show Arduino runtime
+  
   bool newdata = false;
   unsigned long start = millis();
   // every 5 seconds we print an update
@@ -79,15 +106,16 @@ void loop(){
   {
     if (gpsSerial.available())
     {
+      debugTestSerial("IF gpsSerial.availible","OK",0);                                  // DEBUG TEST | PRINT LINE TO SERIAL  | FillFUNCTION  | FillMESSAGE
       char c = gpsSerial.read();
       
-      Serial.println(gps.encode(c));
-      gps.encode(c);
+      //Serial.println(gps.encode(c));
+      //gps.encode(c);
       
       Serial.print(c);  // uncomment to see raw GPS data
       if (gps.encode(c)) // passes 1 character to gps.encode()
       {
-        debugTestSerial("if gps.encode(c)","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+        debugTestSerial("if gps.encode(c)","OK",0);                                  // DEBUG TEST | PRINT LINE TO SERIAL | if gps.encode(c)  | OK
         newdata = true;
         break;  // uncomment to print new data immediately!
       }
@@ -96,7 +124,7 @@ void loop(){
   
   if (newdata) 
   {
-    debugTestSerial("if newdata","OK");                                  // DEBUG TEST | PRINT LINE TO SERIAL
+    debugTestSerial("if newdata","OK",0);                                  // DEBUG TEST | PRINT LINE TO SERIAL | if newdate  | OK
     Serial.println("Acquired Data");
     Serial.println("-------------");
     gpsdump(gps);
@@ -187,8 +215,25 @@ void printFloat(double number, int digits){
   }
 }
 
-void debugTestSerial(String codePart, String message){
-  if(debugTestSerialEnabled){Serial.println("debugTestSerial: " + codePart + ": " + message);}
+void debugTestSerial(String codePart, String message, int showRuntime){
+  if(debugTestSerialEnabled){
+    switch(showRuntime){
+      case 0:
+        Serial.println("debugTestSerial: " + codePart + ": " + message);
+        break;
+      case 1:
+        Serial.print("debugTestSerial: " + codePart + ": " + message);
+        Serial.println(" - Runtime Arduino in seconds: "+String(millis()/1000, DEC));
+        break;
+      case 2:
+        Serial.println("Runtime Arduino in seconds: "+String(millis()/1000, DEC));
+        break;
+      default:
+        Serial.print("ERROR while starting debugTestSerial function: invalid parameter passed for int showRuntime: ");
+        Serial.println(showRuntime);
+        break;
+    }
+  }
 }
 
 static void setup01(){
