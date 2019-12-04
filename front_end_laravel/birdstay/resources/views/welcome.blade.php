@@ -1,110 +1,100 @@
-@extends('layout')
-@section('main')
-    <div class="w3-row-padding w3-margin-bottom">
-        <div class="w3-quarter">
-            <div class="w3-container w3-red w3-padding-16">
-                <div class="w3-left"><i class="fa fa-twitter w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3>52</h3>
-                </div>
-                <div class="w3-clear"></div>
-                <h4>Birds</h4>
-            </div>
-        </div>
-        <div class="w3-quarter">
-            <div class="w3-container w3-blue w3-padding-16">
-                <div class="w3-left"><i class="fa fa-check-square w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3>2</h3>
-                </div>
-                <div class="w3-clear"></div>
-                <h4>Status</h4>
-            </div>
-        </div>
-        <div class="w3-quarter">
-            <div class="w3-container w3-teal w3-padding-16">
-                <div class="w3-left"><i class="fa fa-map w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3>1</h3>
-                </div>
-                <div class="w3-clear"></div>
-                <h4>Map</h4>
-            </div>
-        </div>
-        <div class="w3-quarter">
-            <div class="w3-container w3-orange w3-text-white w3-padding-16">
-                <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3>3</h3>
-                </div>
-                <div class="w3-clear"></div>
-                <h4>Notifications</h4>
-            </div>
-        </div>
-    </div>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="w3-panel">
-        <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-halv">
-                <h5>Out of area bids</h5>
-                <table class="w3-table w3-striped w3-white">
-                    <tr>
-                        <td>Bird number</td>
-                        <td>Bird name</td>
-                        <td>Last update</td>
-                    </tr>
-                    <tr>
-                        <td>193</td>
-                        <td>Flamingo</td>
-                        <td><i>8 mins</i></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
+        <title>Laravel</title>
 
-    <div class="w3-panel">
-        <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-halv">
-                <h5>In area bids</h5>
-                <table class="w3-table w3-striped w3-white">
-                    <tr>
-                        <td>Bird number</td>
-                        <td>Bird name</td>
-                        <td></td>
-                        <td></td>
-                        <td>Status</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Flamingo</td>
-                        <td><i class="fa fa-expand fa-fw"></i><button type="button" class="btn btn-info" data-toggle="collapse" data-target="bird2">Expand</button></td>
-                        <td><i class="fa fa-pencil fa-fw"></i>edit</td>
-                        <td><font color="green">OK</font></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Duif</td>
-                        <td><i class="fa fa-expand fa-fw"></i><button type="button" class="btn btn-info" data-toggle="collapse" data-target="bird2">Expand</button></td>
-                        <td><i class="fa fa-pencil fa-fw"></i>edit</td>
-                        <td><font color="orange">New update avalible</font></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Mus</td>
-                        <td><i class="fa fa-expand fa-fw"></i><button type="button" class="btn btn-info" data-toggle="collapse" data-target="bird3">Expand</button></td>
-                        <td><i class="fa fa-pencil fa-fw"></i>edit</td>
-                        <td><font color="red">Low battery</font></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Vink</td>
-                        <td><i class="fa fa-expand fa-fw"></i><button type="button" class="btn btn-info" data-toggle="collapse" data-target="bird4">Expand</button></td>
-                        <td><i class="fa fa-pencil fa-fw"></i>edit</td>
-                        <td><font color="green">OK</font></td>
-                    </tr>
-                </table>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+
+            <div class="content">
+                <div class="title m-b-md">
+                    Laravel
+                </div>
+
+                <div class="links">
+                    <a href="https://laravel.com/docs">Docs</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://blog.laravel.com">Blog</a>
+                    <a href="https://nova.laravel.com">Nova</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://vapor.laravel.com">Vapor</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                </div>
             </div>
         </div>
-    </div>
-@endsection
+    </body>
+</html>
