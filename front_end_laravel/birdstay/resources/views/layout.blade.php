@@ -11,6 +11,7 @@
 <style>
     html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
+@yield('style')
 <body class="w3-light-grey">
 
 <!-- Top container -->
@@ -87,6 +88,7 @@
         mySidebar.style.display = "none";
         overlayBg.style.display = "none";
     }
+    @yield('js')
 </script>
 
 </body>

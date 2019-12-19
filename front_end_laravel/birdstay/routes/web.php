@@ -13,3 +13,4 @@
 
 Route::get('/', 'PageController@homepage')->name('homepage');
 Route::resource('/birds', 'BirdController');
+Route::resource('/locations', 'LocationController');
