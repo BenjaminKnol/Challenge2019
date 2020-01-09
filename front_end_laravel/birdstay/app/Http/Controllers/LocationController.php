@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Location;
 use Illuminate\Http\Request;
+use Mapper;
 
 class LocationController extends Controller
 {
@@ -14,7 +15,11 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return view('locations.index');
+        {
+            Mapper::map(53.381128999999990000, -1.470085000000040000);
+
+            return view('locations.index');
+        }
     }
 
     /**
