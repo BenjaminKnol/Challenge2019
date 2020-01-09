@@ -15,7 +15,7 @@ class CreateBirdsTable extends Migration
     {
         Schema::create('birds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('tracker_id');
+            $table->String('tracker_id');
             $table->string('name');
             $table->boolean('is-female')->nullable();
             $table->timestamps();
