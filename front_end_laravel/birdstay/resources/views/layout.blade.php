@@ -46,6 +46,7 @@
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw"></i>  Contact</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
+        <a href="{{ route('birds.create') }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plus fa-fw"></i>  Create Bird</a><br><br>
     </div>
 </nav>
 

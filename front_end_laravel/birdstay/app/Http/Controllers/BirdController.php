@@ -14,7 +14,8 @@ class BirdController extends Controller
      */
     public function index()
     {
-        return view('birds.index');
+        $birds = Bird::all();
+        return view('birds.index', compact('birds'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BirdController extends Controller
      */
     public function create()
     {
-        //
+        return view('birds.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class BirdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'tracker_id' => 'required',
+            'name' => 'required',
+            'is-female' => 'required'
+        ]);
+        $birds = Bird::create(request(['tracker_id','name','is-female']));
+        return redirect(route('birds.index'));
     }
 
     /**
@@ -46,7 +53,7 @@ class BirdController extends Controller
      */
     public function show(Bird $bird)
     {
-        //
+        return view('birds.index', compact('bird'));
     }
 
     /**
@@ -57,7 +64,7 @@ class BirdController extends Controller
      */
     public function edit(Bird $bird)
     {
-        //
+        return view('birds.edit', compact('bird'));
     }
 
     /**
@@ -69,7 +76,14 @@ class BirdController extends Controller
      */
     public function update(Request $request, Bird $bird)
     {
-        //
+        request()->validate([
+            'tracker_id' => 'required',
+            'name' => 'required',
+            'is-female' => 'required'
+        ]);
+
+        $bird->update(request(['tracker_id','name','is-female']));
+        return redirect(route('birds.index'));
     }
 
     /**
@@ -80,6 +94,7 @@ class BirdController extends Controller
      */
     public function destroy(Bird $bird)
     {
-        //
+        $bird->delete();
+        return redirect(route('birds.index'));
     }
 }
