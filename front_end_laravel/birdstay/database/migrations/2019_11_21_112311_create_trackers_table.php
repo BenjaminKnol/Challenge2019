@@ -14,7 +14,8 @@ class CreateTrackersTable extends Migration
     public function up()
     {
         Schema::create('trackers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->String('id')->unique();
+            $table->primary('id');
             $table->integer('bat_status');
             $table->integer('lora_wave');
             $table->timestamps();

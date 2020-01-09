@@ -16,8 +16,9 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('tracker_id')->unsigned();
-            $table->double('gps_location');
+            $table->String('tracker_id');
+            $table->double('gps_longitude');
+            $table->double('gps_latitude');
             $table->timestamp('time_received')->default(Carbon::now());
             $table->timestamps();
 
