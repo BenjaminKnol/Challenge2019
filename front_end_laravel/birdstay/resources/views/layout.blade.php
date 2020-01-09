@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 <title>Bird stay dashboard</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,7 +11,8 @@
 <style>
     html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
-<body class="w3-light-grey">
+@yield('style')
+<body class="w3-light-grey" style="height: 100%">
 
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
@@ -39,7 +40,7 @@
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
         <a href="{{ route('homepage') }}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
         <a href="{{ route('birds.index') }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-twitter fa-fw"></i>  Birds</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map fa-fw"></i>  Map</a>
+        <a href="{{ route('locations.index') }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map fa-fw"></i>  Map</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i>  Status</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notifications</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
@@ -53,7 +54,7 @@
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<div class="w3-main" style="margin-left:300px;margin-top:43px; height: 100%">
 
     <!-- Header -->
     <header class="w3-container" style="padding-top:22px">
@@ -87,6 +88,7 @@
         mySidebar.style.display = "none";
         overlayBg.style.display = "none";
     }
+    @yield('js')
 </script>
 
 </body>
