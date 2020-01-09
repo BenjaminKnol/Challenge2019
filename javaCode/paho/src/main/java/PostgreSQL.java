@@ -22,11 +22,12 @@ public class PostgreSQL {
         try {
             conn = DriverManager.getConnection(url, user, password);
             Statement state = conn.createStatement();
-            ResultSet rs = state.executeQuery("SELECT id FROM locations ORDER BY id LIMIT 1");
+            ResultSet rs = state.executeQuery("SELECT id FROM locations ORDER BY id DESC LIMIT 1");
             long latestlocationId=0;
             while(rs.next()){
                 latestlocationId= rs.getLong(1);
             }
+            latestlocationId++;
             PreparedStatement st = conn.prepareStatement("INSERT INTO locations VALUES( ?, ?, ?, ?, ?, ?, ?)");
 
             st.setObject(1, latestlocationId);
