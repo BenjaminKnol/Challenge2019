@@ -6,7 +6,7 @@
             <div class="w3-container w3-red w3-padding-16">
                 <div class="w3-left"><i class="fa fa-twitter w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>52</h3>
+                    <h3>{{ $birds->count() }}</h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Birds</h4>
