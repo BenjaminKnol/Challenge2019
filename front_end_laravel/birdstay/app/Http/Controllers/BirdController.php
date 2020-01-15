@@ -50,7 +50,7 @@ class BirdController extends Controller
         request()->validate([
             'tracker_id' => 'required | unique:birds',
             'name' => 'required',
-            'is - female' => 'required',
+            'is-female' => 'required',
 
         ]);
 

@@ -62,14 +62,7 @@
                             <td>{{ $outOfAreaBird->name }}</td>
                             <td>{{ \Carbon\Carbon::now()->diff($outOfAreaBird->time_received)->format('%h:%i') }}</td>
                             <td>
-                                <form>
-                                    <div class="field">
-                                        <div class="control">
-                                            <button type="submit" class="button is-danger">Map</button>
-                                        </div>
-                                    </div>
-                                </form>
-
+                                <a href="{{ route('locations.show', ['location' => $outOfAreaBird->id]) }}">Map</a>
                             </td>
                             <td>
                                 <form method="post" action="{{ route('birds.found', ['bird' => $outOfAreaBird->id]) }}">
