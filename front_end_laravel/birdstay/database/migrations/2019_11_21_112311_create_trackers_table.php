@@ -16,8 +16,8 @@ class CreateTrackersTable extends Migration
         Schema::create('trackers', function (Blueprint $table) {
             $table->String('id')->unique();
             $table->primary('id');
-            $table->integer('bat_status');
-            $table->integer('lora_wave');
+            $table->integer('bat_status')->nullable();
+            $table->integer('lora_wave')->nullable();
             $table->timestamps();
         });
     }

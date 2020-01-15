@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bird;
+use App\Tracker;
 use Illuminate\Http\Request;
 
 class BirdController extends Controller
@@ -31,24 +32,28 @@ class BirdController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         request()->validate([
-            'tracker_id' => 'required',
+            'tracker_id' => 'required|unique:birds',
             'name' => 'required',
-            'is-female' => 'required'
+            'is-female' => 'required',
+
         ]);
-        $birds = Bird::create(request(['tracker_id','name','is-female']));
+
+        Tracker::firstOrCreate(['id' => request('tracker_id')]);
+        Bird::create(request(['tracker_id', 'name', 'is-female']));
+
         return redirect(route('birds.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Bird  $bird
+     * @param \App\Bird $bird
      * @return \Illuminate\Http\Response
      */
     public function show(Bird $bird)
@@ -59,7 +64,7 @@ class BirdController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Bird  $bird
+     * @param \App\Bird $bird
      * @return \Illuminate\Http\Response
      */
     public function edit(Bird $bird)
@@ -70,8 +75,8 @@ class BirdController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Bird  $bird
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Bird $bird
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Bird $bird)
@@ -82,14 +87,14 @@ class BirdController extends Controller
             'is-female' => 'required'
         ]);
 
-        $bird->update(request(['tracker_id','name','is-female']));
+        $bird->update(request(['tracker_id', 'name', 'is-female']));
         return redirect(route('birds.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Bird  $bird
+     * @param \App\Bird $bird
      * @return \Illuminate\Http\Response
      */
     public function destroy(Bird $bird)

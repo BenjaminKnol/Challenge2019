@@ -25,6 +25,17 @@
             <button type="submit">Create Bird</button>
         </div>
 
+        <div class="notification is-danger">
+            <ul>
+                @foreach ($errors->all() as $message)
+                    <li>
+                        {{$message}}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
     </form>
+
 @endsection
 
