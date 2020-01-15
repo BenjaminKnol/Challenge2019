@@ -20,6 +20,7 @@ class CreateLocationsTable extends Migration
             $table->double('gps_longitude');
             $table->double('gps_latitude');
             $table->timestamp('time_received')->default(Carbon::now());
+            $table->boolean('is_found')->default(false);
             $table->timestamps();
 
             $table->foreign('tracker_id')->references('id')->on('trackers')->onDelete('CASCADE');
