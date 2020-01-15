@@ -22,16 +22,18 @@
                 <h4>Status</h4>
             </div>
         </div>
-        <div class="w3-quarter">
-            <div class="w3-container w3-teal w3-padding-16">
-                <div class="w3-left"><i class="fa fa-map w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3>1</h3>
+        <a href="{{ route('locations.index') }}">
+            <div class="w3-quarter">
+                <div class="w3-container w3-teal w3-padding-16">
+                    <div class="w3-left"><i class="fa fa-map w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3>1</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Map</h4>
                 </div>
-                <div class="w3-clear"></div>
-                <h4>Map</h4>
             </div>
-        </div>
+        </a>
         <div class="w3-quarter">
             <div class="w3-container w3-orange w3-text-white w3-padding-16">
                 <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
