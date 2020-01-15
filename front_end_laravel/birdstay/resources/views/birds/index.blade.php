@@ -76,52 +76,33 @@
                         <td>Bird name</td>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td>Status</td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Flamingo</td>
-                        <td><i class="fa fa-expand fa-fw"></i>
-                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="bird2">
-                                Expand
-                            </button>
-                        </td>
-                        <td><i class="fa fa-pencil fa-fw"></i>edit</td>
-                        <td><font color="green">OK</font></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Duif</td>
-                        <td><i class="fa fa-expand fa-fw"></i>
-                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="bird2">
-                                Expand
-                            </button>
-                        </td>
-                        <td><i class="fa fa-pencil fa-fw"></i>edit</td>
-                        <td><font color="orange">New update avalible</font></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Mus</td>
-                        <td><i class="fa fa-expand fa-fw"></i>
-                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="bird3">
-                                Expand
-                            </button>
-                        </td>
-                        <td><i class="fa fa-pencil fa-fw"></i>edit</td>
-                        <td><font color="red">Low battery</font></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Vink</td>
-                        <td><i class="fa fa-expand fa-fw"></i>
-                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="bird4">
-                                Expand
-                            </button>
-                        </td>
-                        <td><i class="fa fa-pencil fa-fw"></i>edit</td>
-                        <td><font color="green">OK</font></td>
-                    </tr>
+                    @foreach($birds as $bird)
+                        <tr>
+                            <td>{{ $bird->tracker_id }}</td>
+                            <td>{{ $bird->name }}</td>
+                            <td><i class="fa fa-expand fa-fw"></i>
+                                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="bird2">
+                                    Expand
+                                </button>
+                            </td>
+                            <td><i class="fa fa-pencil fa-fw"></i><a href="{{ route('birds.edit', ['bird' => $bird->id]) }}">Edit</td>
+                            <td>
+                            <form method="post" action="{{ route('birds.destroy', ['bird' => $bird->id]) }}">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <div class="field">
+                                    <div class="control">
+                                        <button type="submit" class="button is-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </form>
+                            </td>
+                            <td><font color="green">OK</font></td>
+                        </tr>
+                    @endforeach()
                 </table>
             </div>
         </div>
