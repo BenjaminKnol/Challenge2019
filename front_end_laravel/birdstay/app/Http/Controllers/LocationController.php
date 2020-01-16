@@ -52,16 +52,32 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        Mapper::map(52.1561113, 5.3878266, ['marker' => false]);
-        $locations = Location::where('tracker_id', $location->tracker_id)->get();
-        $counter = 0;
-        foreach ($locations as $location){
-            Mapper::marker($location->gps_latitude, $location->gps_longitude);
-            $counter++;
-            if($counter < $locations->count()){
-                Mapper::polyline([['latitude' => $location->gps_latitude, 'longitude' => $location->gps_longitude], ['latitude' => $locations[$counter]->gps_latitude, 'longitude' => $locations[$counter]->gps_longitude]]);
-            }
-        }
+
+        /* INFO INFO INFO
+        https://developers.google.com/maps/documentation/javascript/overlays
+        https://github.com/bradcornford/Googlmapper#polyline
+
+        Polyline
+        The polyline method allows a polyline to be added to a map, with coordinates, and optional parameters for options.
+
+        Mapper::polyline([['latitude' => 53.381128999999990000, 'longitude' => -1.470085000000040000], ['latitude' => 52.381128999999990000, 'longitude' => 0.470085000000040000]]);
+        Mapper::polyline([['latitude' => 53.381128999999990000, 'longitude' => -1.470085000000040000], ['latitude' => 52.381128999999990000, 'longitude' => 0.470085000000040000]], ['editable' => 'true']);
+        Mapper::map(52.381128999999990000, 0.470085000000040000)->polyline([['latitude' => 53.381128999999990000, 'longitude' => -1.470085000000040000], ['latitude' => 52.381128999999990000, 'longitude' => 0.470085000000040000]], ['strokeColor' => '#000000', 'strokeOpacity' => 0.1, 'strokeWeight' => 2]);
+        */
+
+
+//        Mapper::map(52.1561113, 5.3878266, ['marker' => false]);
+//        $locations = Location::where('tracker_id', $location->tracker_id)->get();
+//        $counter = 0;
+//        foreach ($locations as $location){
+//            Mapper::marker($location->gps_latitude, $location->gps_longitude);
+//            $counter++;
+//            if($counter < $locations->count()){
+//                Mapper::polyline([['latitude' => $location->gps_latitude, 'longitude' => $location->gps_longitude], ['latitude' => $locations[$counter]->gps_latitude, 'longitude' => $locations[$counter]->gps_longitude]]);
+//            }
+//        }
+
+        
 
         return view('locations.show');
 //        dd(Location::find($location));
