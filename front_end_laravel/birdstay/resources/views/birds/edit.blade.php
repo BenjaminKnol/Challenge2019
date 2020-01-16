@@ -1,4 +1,4 @@
-@extends("layout")
+@extends("layouts.layout")
 
 @section('main')
     <form method="post" action="{{ route('birds.update', ['bird' => $bird->id]) }}">

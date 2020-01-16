@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 @section('title'){{'Contact'}}@endsection
 @section('main')
     <div class="w3-panel">

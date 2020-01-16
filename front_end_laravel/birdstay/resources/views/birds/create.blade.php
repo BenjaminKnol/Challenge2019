@@ -1,4 +1,4 @@
-@extends("layout")
+@extends("layouts.layout")
 @section('title'){{'Create Bird'}}@endsection
 @section('main')
     <form method="post" action="{{ route('birds.store') }}">
