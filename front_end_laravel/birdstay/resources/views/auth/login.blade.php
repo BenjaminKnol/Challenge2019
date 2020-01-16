@@ -3,7 +3,7 @@
 @section('content')
     <div class="w3-row-padding w3-margin-bottom">
         <div class="w3-quarter">
-            <div class="w3-container w3-red w3-padding-16" style="position: relative">
+            <div class="w3-container w3-red w3-padding-16" style="position:relative; top:50px;">
                 <div align="center">
                     <div class="card" >
                         <div class="card-header">{{ __('Login') }}</div>
