@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="field">
-            <label for="is-female">Vrouwelijk</label>
+            <label for="is-female">Female</label>
             <input type="checkbox" name="is-female">
         </div>
         <div class="field">
