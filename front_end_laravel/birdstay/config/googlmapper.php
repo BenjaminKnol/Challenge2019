@@ -30,7 +30,8 @@ return [
     | The region Google API should use required in ISO 3166-1 code format.
     |
     */
-    'region' => 'GB',
+    'region' => 'NL',
+//    'region' => 'GB',
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +41,8 @@ return [
     | The Language Google API should use required in ISO 639-1 code format.
     |
     */
-    'language' => 'en-gb',
+    'language' => 'nl',
+//    'language' => 'en-gb',
 
     /*
     |--------------------------------------------------------------------------
