@@ -11,8 +11,15 @@
 |
 */
 
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', 'BirdController@index')->name('homepage');
 Route::resource('/birds', 'BirdController');
 Route::resource('/locations', 'LocationController');
 Route::patch('/birds/found/{bird}','BirdController@found')->name('birds.found');
+
+
+
+
 
