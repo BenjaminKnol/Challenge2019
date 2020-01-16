@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 @section('title'){{'Birds'}}@endsection
 @section('main')
     <div class="w3-row-padding w3-margin-bottom" style="padding-top: 1em">
