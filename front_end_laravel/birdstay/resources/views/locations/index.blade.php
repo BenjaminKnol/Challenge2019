@@ -1,6 +1,7 @@
 @extends('layout')
 @section('title'){{'Map'}}@endsection
 @section('style')
+
     <style>
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
@@ -20,7 +21,7 @@
 
     </style>
 @endsection
-@section('main')
+@section('content')
 
     <div id="map" style="width: 100%; height: 100%;">
         {!! Mapper::render() !!}

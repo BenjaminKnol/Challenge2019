@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('main')
+@section('content')
     <div class="w3-panel">
         <div class="w3-row-padding" style="margin:0 -16px">
             <div class="w3-halv">

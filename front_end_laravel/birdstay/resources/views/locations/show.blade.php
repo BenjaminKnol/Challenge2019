@@ -20,7 +20,7 @@
 
     </style>
 @endsection
-@section('main')
+@section('content')
 
     <div id="map" style="width: 100%; height: 100%;">
         {!! Mapper::render() !!}

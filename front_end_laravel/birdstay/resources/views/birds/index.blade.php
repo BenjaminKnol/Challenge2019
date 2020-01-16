@@ -1,6 +1,7 @@
 @extends('layout')
 @section('title'){{'Birds'}}@endsection
-@section('main')
+
+@section('content')
 
     <div class="w3-row-padding w3-margin-bottom" style="padding-top: 1em">
         <div class="w3-quarter">

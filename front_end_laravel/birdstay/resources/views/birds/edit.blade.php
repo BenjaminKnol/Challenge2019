@@ -1,6 +1,6 @@
 @extends("layout")
 
-@section('main')
+@section('content')
     <form method="post" action="{{ route('birds.update', ['bird' => $bird->id]) }}">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}

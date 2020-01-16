@@ -29,6 +29,7 @@
             </div>
         </div>
     </nav>
+    @yield('main')
 
 </div>
 </body>

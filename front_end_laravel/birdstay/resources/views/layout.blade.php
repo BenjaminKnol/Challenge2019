@@ -1,5 +1,6 @@
 @extends('layouts.topBar')
 
+@section('main')
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
@@ -7,7 +8,7 @@
             <i class="fas fa-user-circle fa-4x"></i>
         </div>
         <div class="w3-col s8 w3-bar" style="margin-top: 8%">
-            <span>Welcome, <strong>mike</strong></span><br>
+            <span>Welcome, <strong>Mike</strong></span><br>
         </div>
     </div>
     <hr>
@@ -46,7 +47,7 @@
     {{--    <header class="w3-container" style="padding-top:22px">--}}
     {{--        <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>--}}
     {{--    </header>--}}
-        @yield('main')
+        @yield('content')
 
 
 </div>
@@ -76,4 +77,5 @@
     }
     @yield('js')
 </script>
+    @endsection
 
