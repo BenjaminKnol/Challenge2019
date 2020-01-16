@@ -44,19 +44,15 @@
 
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
            onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu</a>
-        <a href="{{ route('homepage') }}"
-           class="w3-bar-item w3-button w3-padding w3-{{ Route::is('homepage') ? '' : 'active' }}blue"><i
-                class="fa fa-users fa-fw"></i> Overview</a>
         <a href="{{ route('birds.index') }}"
-           class="w3-bar-item w3-button w3-padding w3-{{ Route::is('birds.index') ? '' : 'active' }}blue"><i class="fab fa-twitter"></i> Birds</a>
+           class="w3-bar-item w3-button w3-padding w3-{{ Route::is('birds.index') ? '' : 'active' }}blue"><i
+                class="fab fa-twitter"></i> Birds</a>
         <a href="{{ route('locations.index') }}"
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('locations.index') ? '' : 'active' }}blue"><i
                 class="fa fa-map fa-fw"></i> Map</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i> Status</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i> Notifications</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw"></i> Contact</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i> Settings</a><br><br>
+        <a href="{{ route('contact') }}" class="w3-bar-item w3-button w3-padding w3-{{ Route::is('contact') ? '' : 'active' }}blue"><i class="fa fa-envelope fa-fw"></i>
+            Contact</a>
         <a href="{{ route('birds.create') }}"
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('birds.create') ? '' : 'active' }}blue"><i
                 class="fa fa-plus fa-fw"></i> Create Bird</a><br><br>
