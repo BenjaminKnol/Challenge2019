@@ -11,9 +11,11 @@
 |
 */
 
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/contact', 'PageController@contact')->name('contact');
 Route::get('/', 'BirdController@index')->name('homepage');
 Route::resource('/birds', 'BirdController');
 Route::resource('/locations', 'LocationController');

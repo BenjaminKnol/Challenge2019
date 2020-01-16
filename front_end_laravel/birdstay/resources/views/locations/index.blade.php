@@ -1,5 +1,5 @@
 @extends('layout')
-
+@section('title'){{'Map'}}@endsection
 @section('style')
     <style>
         /* Always set the map height explicitly to define the size of the div

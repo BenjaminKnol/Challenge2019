@@ -1,15 +1,13 @@
 @extends('layouts.topBar')
 
-
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
         <div class="w3-col s4">
-            <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+            <i class="fas fa-user-circle fa-4x"></i>
         </div>
-        <div class="w3-col s8 w3-bar">
+        <div class="w3-col s8 w3-bar" style="margin-top: 8%">
             <span>Welcome, <strong>Mike</strong></span><br>
-
         </div>
     </div>
     <hr>
@@ -20,20 +18,15 @@
 
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
            onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu</a>
-        <a href="{{ route('homepage') }}"
-           class="w3-bar-item w3-button w3-padding w3-{{ Route::is('homepage') ? '' : 'active' }}blue"><i
-                class="fa fa-users fa-fw"></i> Overview</a>
         <a href="{{ route('birds.index') }}"
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('birds.index') ? '' : 'active' }}blue"><i
-                class="fa fa-twitter fa-fw"></i> Birds</a>
+                class="fab fa-twitter"></i> Birds</a>
         <a href="{{ route('locations.index') }}"
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('locations.index') ? '' : 'active' }}blue"><i
                 class="fa fa-map fa-fw"></i> Map</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i> Status</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i> Notifications</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw"></i> Contact</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i> Settings</a><br><br>
+        <a href="{{ route('contact') }}" class="w3-bar-item w3-button w3-padding w3-{{ Route::is('contact') ? '' : 'active' }}blue"><i class="fa fa-envelope fa-fw"></i>
+            Contact</a>
         <a href="{{ route('birds.create') }}"
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('birds.create') ? '' : 'active' }}blue"><i
                 class="fa fa-plus fa-fw"></i> Create Bird</a><br><br>
@@ -50,11 +43,11 @@
 <div class="w3-main" style="margin-left:300px;margin-top:43px; height: 100%">
 
     <!-- Header -->
-    <header class="w3-container" style="padding-top:22px">
-        <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
-    </header>
+    {{--    <header class="w3-container" style="padding-top:22px">--}}
+    {{--        <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>--}}
+    {{--    </header>--}}
+        @yield('main')
 
-    @yield('main')
 
 </div>
 

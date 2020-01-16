@@ -1,5 +1,5 @@
 @extends("layout")
-
+@section('title'){{'Create Bird'}}@endsection
 @section('main')
 
     <div class="w3-row-padding w3-margin-bottom">
