@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="height: 100%">
-<title>Bird stay dashboard</title>
+<title>@yield('title', 'Birdstay')</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -73,11 +73,11 @@
 <div class="w3-main" style="margin-left:300px;margin-top:43px; height: 100%">
 
     <!-- Header -->
-    <header class="w3-container" style="padding-top:22px">
-        <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
-    </header>
+    {{--    <header class="w3-container" style="padding-top:22px">--}}
+    {{--        <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>--}}
+    {{--    </header>--}}
+        @yield('main')
 
-    @yield('main')
 
 </div>
 
