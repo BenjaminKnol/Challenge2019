@@ -1,12 +1,9 @@
-@extends('layouts.topBar')
 @extends('layouts.app')
 
 @section('content')
-
-
     <div class="w3-row-padding w3-margin-bottom">
         <div class="w3-quarter">
-            <div class="w3-container w3-red w3-padding-16" >
+            <div class="w3-container w3-red w3-padding-16" style="position: relative">
                 <div align="center">
                     <div class="card" >
                         <div class="card-header">{{ __('Login') }}</div>
@@ -36,8 +33,6 @@
                                         <input id="password" type="password"
                                                class="form-control @error('password') is-invalid @enderror"
                                                name="password" required autocomplete="current-password">
-
-
                                     </div>
                                 </div>
 
@@ -82,7 +77,6 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
