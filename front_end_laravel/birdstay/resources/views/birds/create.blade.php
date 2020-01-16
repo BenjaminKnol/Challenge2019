@@ -13,12 +13,12 @@
         </div>
         <div class="field">
             <div class="control">
-                <input type="text" name="name" placeholder="Naam" required
+                <input type="text" name="name" placeholder="Name" required
                        class="input {{ $errors->has('name') ? 'is-danger' : '' }}" value="{{ old('name') }}">
             </div>
         </div>
         <div class="field">
-            <label for="is-female">Vrouwelijk</label>
+            <label for="is-female">Female</label>
             <input type="checkbox" name="is-female">
         </div>
         <div class="field">
