@@ -22,7 +22,7 @@
     <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i
             class="fa fa-bars"></i> Menu
     </button>
-    <span class="w3-bar-item w3-right">Logo</span>
+    <span class="w3-bar-item w3-right">Birdstay</span>
 </div>
 
 

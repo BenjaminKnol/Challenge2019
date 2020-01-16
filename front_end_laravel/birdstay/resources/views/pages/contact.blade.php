@@ -1,5 +1,5 @@
 @extends('layout')
-
+@section('title'){{'Contact'}}@endsection
 @section('main')
     <div class="w3-panel">
         <div class="w3-row-padding" style="margin:0 -16px">
