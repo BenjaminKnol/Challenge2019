@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/9e8d2c6531.js" crossorigin="anonymous"></script>
 <style>
     html, body, h1, h2, h3, h4, h5 {
         font-family: "Raleway", sans-serif
@@ -29,11 +30,10 @@
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
         <div class="w3-col s4">
-            <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+            <i class="fas fa-user-circle fa-4x"></i>
         </div>
-        <div class="w3-col s8 w3-bar">
+        <div class="w3-col s8 w3-bar" style="margin-top: 8%">
             <span>Welcome, <strong>Mike</strong></span><br>
-
         </div>
     </div>
     <hr>
@@ -48,8 +48,7 @@
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('homepage') ? '' : 'active' }}blue"><i
                 class="fa fa-users fa-fw"></i> Overview</a>
         <a href="{{ route('birds.index') }}"
-           class="w3-bar-item w3-button w3-padding w3-{{ Route::is('birds.index') ? '' : 'active' }}blue"><i
-                class="fa fa-twitter fa-fw"></i> Birds</a>
+           class="w3-bar-item w3-button w3-padding w3-{{ Route::is('birds.index') ? '' : 'active' }}blue"><i class="fab fa-twitter"></i> Birds</a>
         <a href="{{ route('locations.index') }}"
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('locations.index') ? '' : 'active' }}blue"><i
                 class="fa fa-map fa-fw"></i> Map</a>
