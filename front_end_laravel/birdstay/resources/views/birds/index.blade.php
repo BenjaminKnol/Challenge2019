@@ -58,7 +58,7 @@
                         <td>Bird name</td>
                         <td>Last update</td>
                         <td>Map</td>
-                        <td>found</td>
+                        <td>Found</td>
                     </tr>
                     @foreach($outOfAreaBirds as $outOfAreaBird)
                         <tr>
