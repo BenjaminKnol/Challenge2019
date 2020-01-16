@@ -7,7 +7,7 @@
             <i class="fas fa-user-circle fa-4x"></i>
         </div>
         <div class="w3-col s8 w3-bar" style="margin-top: 8%">
-            <span>Welcome, <strong>Mike</strong></span><br>
+            <span>Welcome, <strong>mike</strong></span><br>
         </div>
     </div>
     <hr>
