@@ -23,9 +23,6 @@ class BirdController extends Controller
         $amountOfOutOfAreaBirds = $outOfAreaBirds->count();
 
 
-
-
-
         return view('birds.index', compact('birds', 'outOfAreaBirds', 'amountOfOutOfAreaBirds'));
     }
 
@@ -53,9 +50,8 @@ class BirdController extends Controller
             'is-female' => 'required',
 
         ]);
-
         Tracker::firstOrCreate(['id' => request('tracker_id')]);
-        Bird::create(request(['tracker_id', 'name', 'is - female']));
+        Bird::create(request(['tracker_id', 'name', 'is-female']));
 
         return redirect(route('birds.index'));
     }
@@ -94,10 +90,10 @@ class BirdController extends Controller
         request()->validate([
             'tracker_id' => 'required',
             'name' => 'required',
-            'is - female' => 'required'
+            'is-female' => 'required'
         ]);
 
-        $bird->update(request(['tracker_id', 'name', 'is - female']));
+        $bird->update(request(['tracker_id', 'name', 'is-female']));
         return redirect(route('birds.index'));
     }
 
