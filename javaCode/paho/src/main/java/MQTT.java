@@ -61,7 +61,7 @@ public class MQTT implements MqttCallback {
             } 
         });
 
-        System.out.println("time to connect");
+        System.out.println("Time to connect");
         client.connect(MQTToptions);
 
         if (client.isConnected()) {
