@@ -17,9 +17,12 @@ class LocationController extends Controller
     public function index()
     {
         {
-            Mapper::map(52.1561113, 5.3878266, ['marker' => false]);
+            $outOfAreaBirds = location::join('birds', 'birds.tracker_id', '=', 'locations.tracker_id')->
+            select("birds.id", "birds.tracker_id", "gps_longitude", "gps_latitude", "time_received", "is_found",
+                "locations.created_at", "locations.updated_at", "name", "is-female", "locations.id as locationId")
+                ->orderBy('time_received', 'desc')->get()->unique('tracker_id');
 
-            return view('locations.index');
+            return view('locations.index', compact('outOfAreaBirds'));
         }
     }
 
@@ -36,7 +39,7 @@ class LocationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,7 +50,7 @@ class LocationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param \App\Location $location
      * @return \Illuminate\Http\Response
      */
     public function show(Location $location)
@@ -55,10 +58,10 @@ class LocationController extends Controller
         Mapper::map(52.1561113, 5.3878266, ['marker' => false]);
         $locations = Location::where('tracker_id', $location->tracker_id)->get();
         $counter = 0;
-        foreach ($locations as $location){
+        foreach ($locations as $location) {
             Mapper::marker($location->gps_latitude, $location->gps_longitude);
             $counter++;
-            if($counter < $locations->count()){
+            if ($counter < $locations->count()) {
                 Mapper::polyline([['latitude' => $location->gps_latitude, 'longitude' => $location->gps_longitude], ['latitude' => $locations[$counter]->gps_latitude, 'longitude' => $locations[$counter]->gps_longitude]]);
             }
         }
@@ -70,7 +73,7 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param \App\Location $location
      * @return \Illuminate\Http\Response
      */
     public function edit(Location $location)
@@ -81,8 +84,8 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Location $location
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Location $location)
@@ -93,7 +96,7 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Location  $location
+     * @param \App\Location $location
      * @return \Illuminate\Http\Response
      */
     public function destroy(Location $location)
