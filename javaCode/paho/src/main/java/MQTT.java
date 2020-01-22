@@ -15,7 +15,6 @@ public class MQTT implements MqttCallback {
 
     private String serverUrl;
 
-
     public MQTT(boolean TLS, String protocol, String host, MqttConnectOptions MQTToptions) throws Exception {
 
         int port;
@@ -61,36 +60,28 @@ public class MQTT implements MqttCallback {
             } 
         });
 
-        System.out.println("time to connect");
+        System.out.println("Time to connect");
         client.connect(MQTToptions);
 
         if (client.isConnected()) {
             System.out.println("Connected");
-
         } else {
             System.out.println("Connection failed");
         }
-
         client.subscribe("boaskaken1/devices/+/up", 2);
-
-
     }
 
-
     public void connectionLost(Throwable throwable) {
-
     }
 
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-
     }
 
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
-
     }
 
-    /*
 
+    /*
     the original message
 
     {
@@ -117,8 +108,9 @@ public class MQTT implements MqttCallback {
     "payload_fields":{"LANG":"-1.2730366669860675e+29"
     "LONG":"1.7378244361449504e+34"}
     "metadata":{"time":"2019-11-27T18:00:24.785210782Z"}}
-
      */
+
+
     public static BirdGps stringBirdGps(String in){
         String[] parts = in.split(",");
         String devId = parts[1].substring(10).replace("\"", "");
@@ -129,7 +121,6 @@ public class MQTT implements MqttCallback {
         BirdGps birdGps = toBirdGps(devId, Lang, Long, time);
 
         return birdGps;
-
     }
 
     public static BirdGps toBirdGps(String id, String lat, String lon, String time) {
@@ -140,7 +131,6 @@ public class MQTT implements MqttCallback {
         double doubleLong = Double.valueOf(lon);
 
         try {
-
             date = LocalDateTime.parse(time);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -148,12 +138,8 @@ public class MQTT implements MqttCallback {
             if (date == null) {
                 date = LocalDateTime.now();
             }
-
             BirdGps birdGps = new BirdGps(date, id, doubleLat, doubleLong);
             return birdGps;
         }
-
     }
-
 }
-
