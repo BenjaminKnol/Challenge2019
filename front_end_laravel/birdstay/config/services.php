@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => env('notifications.birdstay.nl'),
+        'secret' => env('9a835107cc7c1be3066d8a773c9b6888-9dfbeecd-41ec2ee8'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
