@@ -27,6 +27,7 @@ public class PostgreSQL {
             while(rs.next()){
                 latestlocationId= rs.getLong(1);
             }
+
             latestlocationId++;
             PreparedStatement st = conn.prepareStatement("INSERT INTO locations VALUES( ?, ?, ?, ?, ?, ?, ?)");
 
