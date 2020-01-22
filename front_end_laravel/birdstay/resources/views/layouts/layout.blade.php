@@ -58,7 +58,7 @@
         <a href="{{ route('locations.index') }}"
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('locations.index') ? '' : 'active' }}blue"><i
                 class="fa fa-map fa-fw"></i> Map</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i> Notifications</a>
+{{--        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i> Notifications</a>  // Temporarely removed option because Notifications page is not working--}}
         <a href="{{ route('contact') }}"
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('contact') ? '' : 'active' }}blue"><i
                 class="fa fa-envelope fa-fw"></i>
