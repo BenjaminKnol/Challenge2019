@@ -18,9 +18,15 @@ class BirdController extends Controller
     {
         $birds = Bird::all();
 
-        $outOfAreaBirds = location::join('birds', 'birds.tracker_id', '=', 'locations.tracker_id')->where("is_found", false)->orderBy('time_received', 'desc')->get();
+        $outOfAreaBirds = location::join('birds', 'birds.tracker_id', '=', 'locations.tracker_id')->
+        select("birds.id", "birds.tracker_id", "gps_longitude", "gps_latitude", "time_received", "is_found", "locations.created_at", "locations.updated_at", "name", "is-female", "locations.id as locationId")
+            ->where("is_found", false)->orderBy('time_received', 'desc')->get();
+
+
         $outOfAreaBirds = $outOfAreaBirds->unique('tracker_id');
+dd($outOfAreaBirds);
         $amountOfOutOfAreaBirds = $outOfAreaBirds->count();
+
 
         return view('birds.index', compact('birds', 'outOfAreaBirds', 'amountOfOutOfAreaBirds'));
     }
@@ -116,3 +122,6 @@ class BirdController extends Controller
 
     }
 }
+
+
+
