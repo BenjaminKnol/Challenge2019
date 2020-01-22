@@ -24,7 +24,7 @@ class BirdController extends Controller
 
 
         $outOfAreaBirds = $outOfAreaBirds->unique('tracker_id');
-dd($outOfAreaBirds);
+
         $amountOfOutOfAreaBirds = $outOfAreaBirds->count();
 
 
