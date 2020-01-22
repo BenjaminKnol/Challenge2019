@@ -14,10 +14,10 @@
                     </tr>
                     @for ($i = 0; $i < 10; $i++)
                         <tr>
-                            <td>P.Laceholder</td>
-                            <td>Picture Laceholder A.K.A placeholder</td>
-                            <td>Place@holder.com</td>
-                            <td>06-12345678</td>
+                            <td>{{ $faker->name }}</td>
+                            <td><i class="fas fa-user-circle fa-3x" aria-hidden="true"></i></td>
+                            <td>{{ $faker->unique()->email }}</td>
+                            <td>{{ $faker->numerify('06-### ## ###') }}</td>
                         </tr>
                     @endfor
                 </table>
