@@ -33,7 +33,15 @@
             <i class="fas fa-user-circle fa-4x"></i>
         </div>
         <div class="w3-col s8 w3-bar" style="margin-top: 8%">
-            <span>Welcome, <strong>Mike</strong></span><br>
+            <span>Welcome, <strong>{{Auth::user()->name}}</strong></span><br>
+            <form method="post" action="{{ route('logout') }}">
+                {{ csrf_field() }}
+                <div class="field">
+                    <div class="control">
+                        <button type="submit" class="button">Log out</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <hr>
@@ -51,7 +59,9 @@
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('locations.index') ? '' : 'active' }}blue"><i
                 class="fa fa-map fa-fw"></i> Map</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i> Notifications</a>
-        <a href="{{ route('contact') }}" class="w3-bar-item w3-button w3-padding w3-{{ Route::is('contact') ? '' : 'active' }}blue"><i class="fa fa-envelope fa-fw"></i>
+        <a href="{{ route('contact') }}"
+           class="w3-bar-item w3-button w3-padding w3-{{ Route::is('contact') ? '' : 'active' }}blue"><i
+                class="fa fa-envelope fa-fw"></i>
             Contact</a>
         <a href="{{ route('birds.create') }}"
            class="w3-bar-item w3-button w3-padding w3-{{ Route::is('birds.create') ? '' : 'active' }}blue"><i
@@ -72,7 +82,7 @@
     {{--    <header class="w3-container" style="padding-top:22px">--}}
     {{--        <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>--}}
     {{--    </header>--}}
-        @yield('main')
+    @yield('main')
 
 
 </div>

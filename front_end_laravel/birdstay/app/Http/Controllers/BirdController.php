@@ -22,7 +22,6 @@ class BirdController extends Controller
         $outOfAreaBirds = $outOfAreaBirds->unique('tracker_id');
         $amountOfOutOfAreaBirds = $outOfAreaBirds->count();
 
-
         return view('birds.index', compact('birds', 'outOfAreaBirds', 'amountOfOutOfAreaBirds'));
     }
 
