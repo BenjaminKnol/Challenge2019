@@ -1,7 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="paho:jar">
-    <output-path>$PROJECT_DIR$/../../..</output-path>
+  <artifact type="jar" name="paho:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/paho_jar</output-path>
     <root id="archive" name="paho.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="paho" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/paho/org.eclipse.paho.client.mqttv3/1.2.0/org.eclipse.paho.client.mqttv3-1.2.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.2.8/postgresql-42.2.8.jar" path-in-jar="/" />
