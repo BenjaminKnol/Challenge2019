@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Bird;
 use App\Location;
+use App\Notifications\BirdMissing;
 use App\Tracker;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class BirdController extends Controller
 {
@@ -18,7 +21,7 @@ class BirdController extends Controller
     {
         $birds = Bird::all();
 
-        $outOfAreaBirds = location::join('birds', 'birds.tracker_id', '=', 'locations.tracker_id')->
+        $outOfAreaBirds = Bird::join('locations', 'birds.tracker_id', '=', 'locations.tracker_id')->
         select("birds.id", "birds.tracker_id", "gps_longitude", "gps_latitude", "time_received", "is_found", "locations.created_at", "locations.updated_at", "name", "is-female", "locations.id as locationId")
             ->where("is_found", false)->orderBy('time_received', 'desc')->get();
 
@@ -26,6 +29,11 @@ class BirdController extends Controller
         $outOfAreaBirds = $outOfAreaBirds->unique('tracker_id');
 
         $amountOfOutOfAreaBirds = $outOfAreaBirds->count();
+        if($amountOfOutOfAreaBirds > 0){
+            foreach ($outOfAreaBirds as $outOfAreaBird){
+                Notification::send(User::all(), new BirdMissing($outOfAreaBird));
+            }
+        }
 
 
         return view('birds.index', compact('birds', 'outOfAreaBirds', 'amountOfOutOfAreaBirds'));
