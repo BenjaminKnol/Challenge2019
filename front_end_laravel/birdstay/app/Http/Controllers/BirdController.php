@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Bird;
 use App\Location;
-use App\Notifications\BirdMissing;
 use App\Tracker;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
 
 class BirdController extends Controller
 {
@@ -28,11 +26,8 @@ class BirdController extends Controller
         $outOfAreaBirds = $outOfAreaBirds->unique('tracker_id');
 
         $amountOfOutOfAreaBirds = $outOfAreaBirds->count();
-        if($amountOfOutOfAreaBirds > 0){
-            foreach ($outOfAreaBirds as $outOfAreaBird){
-                Notification::send(User::all(), new BirdMissing($outOfAreaBird));
-            }
-        }
+
+
         return view('birds.index', compact('birds', 'outOfAreaBirds', 'amountOfOutOfAreaBirds'));
     }
 
