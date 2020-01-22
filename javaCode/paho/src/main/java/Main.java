@@ -16,14 +16,10 @@ class Main {
         MQTToptions.setUserName("boaskaken1");
         MQTToptions.setPassword("ttn-account-v2.ZjdRbI-Vb64PQlXljMXWKglvwr_NQbnj9IriE-7ZMA4".toCharArray());
 
-
         try {
             MQTT mqtt = new MQTT(TLS, protocol, host, MQTToptions);
         } catch (Exception e) {
-            System.err.println("oeeps: " + e.getMessage());
-
-
+            System.err.println("Error: " + e.getMessage());
         }
-
     }
 }
