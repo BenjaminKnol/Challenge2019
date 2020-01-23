@@ -28,15 +28,16 @@ public class PostgreSQL {
                 latestlocationId= rs.getLong(1);
             }
             latestlocationId++;
-            PreparedStatement st = conn.prepareStatement("INSERT INTO locations VALUES( ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement st = conn.prepareStatement("INSERT INTO locations VALUES( ?, ?, ?, ?, ?, ?, ?, ?)");
 
             st.setObject(1, latestlocationId);
             st.setObject(2, payload.getTrackerID());
             st.setObject(3, payload.getGpsLong());
             st.setObject(4, payload.getGpsLat());
             st.setObject(5, payload.getDate());
-            st.setObject(6, LocalDateTime.now());
+            st.setObject(6, false);
             st.setObject(7, LocalDateTime.now());
+            st.setObject(8, LocalDateTime.now());
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {
