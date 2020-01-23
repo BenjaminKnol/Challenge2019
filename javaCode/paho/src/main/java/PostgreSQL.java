@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class PostgreSQL {
 
     private final String url = "jdbc:postgresql://localhost/birdstay";
-    private final String user = "postgres";
+    private final String user = "birdstay";
     private final String password = "boaskalma";
     private BirdGps payload;
 
