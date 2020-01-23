@@ -10,7 +10,7 @@ public class PostgreSQL {
 
     private final String url = "jdbc:postgresql://localhost/birdstay";
     private final String user = "postgres";
-    private final String password = "root";
+    private final String password = "boaskalma";
     private BirdGps payload;
 
     public PostgreSQL(BirdGps birdGps) {
