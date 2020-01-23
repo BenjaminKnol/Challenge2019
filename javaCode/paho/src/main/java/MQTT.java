@@ -122,7 +122,7 @@ public class MQTT implements MqttCallback {
     public static BirdGps stringBirdGps(String in){
         String[] parts = in.split(",");
         String devId = parts[1].substring(10).replace("\"", "");
-        String Lang = parts[6].substring(26).replace("\"", "");
+        String Lang = parts[6].substring(25).replace("\"", "");
         String Long = parts[7].substring(8).replace("\"", "").replace("}", "");
         String time = parts[8].substring(20, 39).replace("\"", "").replace("}", "").replace("T", " ");
 
