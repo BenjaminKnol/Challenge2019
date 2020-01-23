@@ -26,8 +26,15 @@ floatArr2Val payload;
 
 void setup()
 {
-  loraSerial.begin(57600);
+  pinMode(2, INPUT);
   debugSerial.begin(9600);
+  while(digitalRead(2) == LOW)
+  {
+    Serial.println("waiting");
+    delay(1000);
+  }
+  loraSerial.begin(57600);
+  
 
   // Wait a maximum of 10s for Serial Monitor
   while (!debugSerial && millis() < 10000)
@@ -44,8 +51,8 @@ void loop()
 {
   debugSerial.println("-- LOOP");
 
-  long randNumberLong = random(-90000000, 90000000);
-  long randNumberLat = random(-18000000, 180000000);
+  //long randNumberLong = random(-90000000, 90000000);
+  //long randNumberLat = random(-18000000, 180000000);
 
   //latlong.f[0] = randNumberLat / 100000;
   //latlong.f[1] = randNumberLong / 100000;
@@ -53,8 +60,8 @@ void loop()
   double xCoord = 56.234464;
   double yCoord = 23.345908;
   // Prepare payload of 1 byte to indicate LED status
-  payload.f[0] = randNumberLat; //n to s
-  payload.f[1] = randNumberLong; //w to o
+  payload.f[0] = xCoord; //n to s
+  payload.f[1] = yCoord; //w to o
 
   ttn.sendBytes(payload.bytes, sizeof(payload));
   for (int i = 0; i < 8; i++) {
