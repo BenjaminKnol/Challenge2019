@@ -58,7 +58,7 @@ public class MQTT implements MqttCallback {
 
             //@Override
             public void deliveryComplete(IMqttDeliveryToken token) {//Called when a outgoing publish is complete
-            } 
+            }
         });
 
         System.out.println("time to connect");
@@ -119,12 +119,20 @@ public class MQTT implements MqttCallback {
     "metadata":{"time":"2019-11-27T18:00:24.785210782Z"}}
 
      */
-    public static BirdGps stringBirdGps(String in){
+    public static BirdGps stringBirdGps(String in) {
+
         String[] parts = in.split(",");
+        String[] langParts = parts[6].split("\"");
+        String[] longParts = parts[7].split("\"");
+        String[] timeParts = parts[8].split("\"");
+
         String devId = parts[1].substring(10).replace("\"", "");
-        String Lang = parts[6].substring(25).replace("\"", "");
-        String Long = parts[7].substring(8).replace("\"", "").replace("}", "");
-        String time = parts[8].substring(20, 39).replace("\"", "").replace("}", "").replace("T", " ");
+        String Lang = langParts[5].substring(0, 10);
+        String Long = longParts[3].substring(0, 10);
+
+
+        String time = timeParts[5].substring(0,19).replace("\"", "").replace("}", "").replace("T", " ");
+//        parts[8].substring(20, 39)
 
         BirdGps birdGps = toBirdGps(devId, Lang, Long, time);
 
