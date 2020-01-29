@@ -126,6 +126,7 @@ public class MQTT implements MqttCallback {
     public static BirdGps stringBirdGps(String in) {
 
         //debug time
+        /*
         in = "{\"app_id\":\"boaskaken1\"," +
                 "\"dev_id\":\"boaskalma2\"," +
                 "\"hardware_serial\":\"0004A30B001AF7DC\"," +
@@ -134,7 +135,7 @@ public class MQTT implements MqttCallback {
                 //"\"is_retry\":true," + //uncoment for testing if the firs mesage is receved correctly
                 "\"payload_raw\":\"F/BgQmvEukE=\"," +
                 "\"payload_fields\":{\"LAT\":\"23.345907\"," +
-                "\"LONG\":\"56.234463},\"" +
+                "\"LONG\":\"56.234463}," +
                 "\"metadata\":{" +
                 "\"time\":\"2020-01-29T06:30:15.671275718Z\"," +
                 "\"frequency\":867.9," +
@@ -154,6 +155,7 @@ public class MQTT implements MqttCallback {
                 "\"latitude\":51.926147," +
                 "\"longitude\":4.484228," +
                 "\"location_source\":\"registry\"}]}}";
+                */
 
 
         String[] parts = in.split(",");
@@ -176,12 +178,12 @@ public class MQTT implements MqttCallback {
 
         String devId = devIdParts[3];
 
-        String Lang = langParts[5];
-        //System.out.println("lang " + Lang);
-        String Long = longParts[3].replace("}","");
-        //System.out.println("long " + Long);
-        String time = timeParts[6].substring(0, 19);
-        //System.out.println("time " + time);
+        String Lang = langParts[5].substring(0, 10);
+        System.out.println("lang " + Lang);
+        String Long = longParts[3].replace("}", "").substring(0, 10);
+        System.out.println("long " + Long);
+        String time = timeParts[5].substring(0, 19);
+        System.out.println("time " + time);
 
         BirdGps birdGps = toBirdGps(devId, Lang, Long, time);
 
@@ -199,7 +201,6 @@ public class MQTT implements MqttCallback {
         double doubleLong = Double.valueOf(lon);
 
         try {
-
             date = LocalDateTime.parse(time);
         } catch (Exception e) {
             System.out.println(e.getMessage());
