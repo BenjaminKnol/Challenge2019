@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="main:jar">
+    <output-path>$PROJECT_DIR$/jarFiles</output-path>
+    <root id="archive" name="main.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/paho/src/main/resources/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="main" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/paho/out/artifacts/paho_jar/paho.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
