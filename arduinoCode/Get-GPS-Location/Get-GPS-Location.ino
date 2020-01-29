@@ -7,20 +7,16 @@
 
 
 #include <SoftwareSerial.h>
-#include <TinyGPS.h>
+
 
 // define variables for pins
-int gpsBoardTX = 4;
-int gpsBoardRX = 5;
-int gpsBoardGround = 6;
-int gpsBoardVCC = 7;
+int gpsBoardTX = 6;
+int gpsBoardRX = 7;
 
 
 SoftwareSerial mySerial(gpsBoardTX, gpsBoardRX); // RX, TX
 TinyGPS gps;
 
-void gpsdump(TinyGPS &gps);
-void printFloat(double f, int digits = 2);
 
 void setup(){
   // provide power for GPS module
