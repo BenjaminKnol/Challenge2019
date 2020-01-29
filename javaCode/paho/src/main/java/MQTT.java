@@ -178,16 +178,16 @@ public class MQTT implements MqttCallback {
 
         String devId = devIdParts[3];
 
-        String Lang = langParts[5].substring(0, 10);
+        String Lang = langParts[5].substring(0, 6);
         System.out.println("lang " + Lang);
-        String Long = longParts[3].replace("}", "").substring(0, 10);
+        String Long = longParts[3].replace("}", "").substring(0, 6);
         System.out.println("long " + Long);
         String time = timeParts[5].substring(0, 19);
         System.out.println("time " + time);
 
         BirdGps birdGps = toBirdGps(devId, Lang, Long, time);
 
-        birdGps.print();
+        //birdGps.print();
 
         return birdGps;
 
