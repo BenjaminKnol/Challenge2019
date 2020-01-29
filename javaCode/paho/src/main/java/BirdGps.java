@@ -48,7 +48,7 @@ public class BirdGps {
     }
 
     public void print() {
-        System.out.printf("id: %s, lang: %s, long: %s, time: %s", trackerID, gpsLat, gpsLog, date.toString());
+        System.out.printf("id: %s, lang: %s, long: %s, time: %s", trackerID, gpsLat, gpsLog, date.toString().replace("T", " "));
     }
 
     public String toString() {

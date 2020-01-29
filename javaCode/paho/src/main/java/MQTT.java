@@ -71,7 +71,7 @@ public class MQTT implements MqttCallback {
             System.out.println("Connection failed");
         }
 
-        client.subscribe("boaskaken1/devices/+/up", 2);
+        client.subscribe("boaskaken1/devices/+/up", 1);
 
 
     }
@@ -122,17 +122,16 @@ public class MQTT implements MqttCallback {
     public static BirdGps stringBirdGps(String in) {
 
         String[] parts = in.split(",");
+        String[] devIdParts = parts[1].split("\"");
         String[] langParts = parts[6].split("\"");
         String[] longParts = parts[7].split("\"");
         String[] timeParts = parts[8].split("\"");
 
-        String devId = parts[1].substring(10).replace("\"", "");
+        String devId = devIdParts[3];
         String Lang = langParts[5].substring(0, 10);
         String Long = longParts[3].substring(0, 10);
+        String time = timeParts[5].substring(0,19);
 
-
-        String time = timeParts[5].substring(0,19).replace("\"", "").replace("}", "").replace("T", " ");
-//        parts[8].substring(20, 39)
 
         BirdGps birdGps = toBirdGps(devId, Lang, Long, time);
 
